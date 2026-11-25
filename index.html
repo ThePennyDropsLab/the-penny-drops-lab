@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Penny Drops Lab — informática, datos y matemáticas sin humo</title>
+  <meta name="description" content="Divulgación de ingeniería informática: programación, datos, matemáticas e IA explicados con analogías y código real. Por David Rojas.">
+  <link rel="icon" href="assets/brand/coin.jpg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html" aria-label="Inicio — The Penny Drops Lab">
+        <img src="assets/brand/coin.jpg" width="30" height="30" alt="">
+      </a>
+      <a class="nav__title" href="index.html">The Penny Drops Lab</a>
+      <nav class="nav__links" id="menu">
+        <a href="index.html" aria-current="page">Inicio</a>
+        <a href="index.html#entradas">Entradas</a>
+        <a href="about.html">Sobre</a>
+        <span class="nav__socials">
+          <a class="nav__social" href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="nav__social" href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2L15.2 12L10 14.8Z" fill="currentColor" stroke="none"/></svg></a>
+        </span>
+      </nav>
+      <button class="theme-toggle" aria-label="Cambiar tema">☾</button>
+      <button class="nav__burger" aria-label="Abrir menú" aria-controls="menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <video class="hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/video/hero-penny.mp4" type="video/mp4">
+      </video>
+      <div class="hero__scrim"></div>
+    </div>
+    <div class="wrap hero__inner">
+      <div class="reveal">
+        <p class="eyebrow">Informática · datos · matemáticas</p>
+        <h1>La informática y las matemáticas, explicadas hasta que <span class="grad">hacen clic</span>.</h1>
+        <p class="lead">Soy ingeniero y divulgo cómo funcionan por dentro la programación, los datos y las matemáticas que hay debajo. Cojo conceptos que parecen áridos —un algoritmo, una base de datos, un modelo de IA— y los explico con analogías y código real, hasta que se entienden a la primera.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#entradas">Leer las entradas</a>
+          <a class="btn btn--ghost" href="about.html">Quién está detrás</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ENTRADAS ===================== -->
+  <main class="wrap section" id="entradas">
+    <p class="eyebrow reveal">Entradas</p>
+    <h2 class="reveal" style="font-size:1.9rem;margin-bottom:28px">Por aquí se empieza</h2>
+
+    <div class="grid">
+      <!-- Entrada 1 -->
+      <article class="card reveal">
+        <a href="posts/automatizar-informe-con-ia.html" class="card__media">
+          <img src="assets/brand/cover-automatizacion.jpg" alt="Engranajes y un ciclo de automatización">
+        </a>
+        <div class="card__body">
+          <span class="tag">IA aplicada</span>
+          <h3><a href="posts/automatizar-informe-con-ia.html">El informe que me robaba seis horas cada lunes ahora se hace solo</a></h3>
+          <p>Lo hacía a mano todas las semanas hasta que me cansé. Te cuento cómo lo monté y qué parte dejé en manos de la IA.</p>
+          <div class="card__meta"><span>23 nov 2026</span><span>·</span><span>6 min</span><a class="readmore" href="posts/automatizar-informe-con-ia.html" style="margin-left:auto">Leer →</a></div>
+        </div>
+      </article>
+
+      <!-- Entrada 2 -->
+      <article class="card reveal">
+        <a href="posts/como-funciona-una-base-de-datos.html" class="card__media">
+          <img src="assets/brand/cover-datos.jpg" alt="Un armario de cajones y una base de datos">
+        </a>
+        <div class="card__body">
+          <span class="tag">Datos</span>
+          <h3><a href="posts/como-funciona-una-base-de-datos.html">11.646 gasolineras y por qué una base de datos no es un Excel gigante</a></h3>
+          <p>Me descargué los precios de la gasolina de toda España. El 84% del archivo estaba vacío, y ahí está justo la lección.</p>
+          <div class="card__meta"><span>23 nov 2026</span><span>·</span><span>7 min</span><a class="readmore" href="posts/como-funciona-una-base-de-datos.html" style="margin-left:auto">Leer →</a></div>
+        </div>
+      </article>
+
+      <!-- Entrada 3 -->
+      <article class="card reveal">
+        <a href="posts/canal-con-mi-voz.html" class="card__media">
+          <img src="assets/brand/cover-canal.jpg" alt="Onda de sonido y botón de play">
+        </a>
+        <div class="card__body">
+          <span class="tag">Detrás del canal</span>
+          <h3><a href="posts/canal-con-mi-voz.html">Cloné mi voz para no grabar cien veces lo mismo</a></h3>
+          <p>Quería divulgar en vídeo sin pasarme la vida repitiendo audios. Cómo lo monté, y en qué momento la IA deja de ayudar.</p>
+          <div class="card__meta"><span>23 nov 2026</span><span>·</span><span>5 min</span><a class="readmore" href="posts/canal-con-mi-voz.html" style="margin-left:auto">Leer →</a></div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="wrap section" style="padding-top:0">
+    <div class="callout reveal" style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div>
+        <h2 style="font-size:1.4rem;color:var(--text)">Esto mismo, pero en vídeo</h2>
+        <p style="margin-top:6px">Publico algo nuevo cada semana en Instagram y YouTube.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn--primary" href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener">Seguir en Instagram ↗</a>
+        <a class="btn btn--ghost" href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener">Ver en YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="brand"><img src="assets/brand/coin.jpg" width="26" height="26" alt=""></div>
+      <p>© 2026 David Rojas · The Penny Drops Lab</p>
+      <p><a href="about.html">Sobre</a> · <a href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener">YouTube</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

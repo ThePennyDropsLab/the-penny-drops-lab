@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Memoria — Actividad 1 — David Rojas</title>
+<style>
+  @page { size: A4; margin: 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #15202b; line-height: 1.4; font-size: 10.6pt; margin: 0; }
+  h1 { font-size: 17pt; margin: 0 0 2px; }
+  h2 { font-size: 11pt; margin: 12px 0 4px; color: #b5781a; border-bottom: 1px solid #e7cfa0; padding-bottom: 2px; }
+  .sub { color: #5a6678; font-size: 9.5pt; margin-bottom: 10px; }
+  .links { background: #fbf4e6; border: 1px solid #e7cfa0; border-radius: 8px; padding: 9px 12px; margin: 8px 0 4px; font-size: 10pt; }
+  .links b { color: #b5781a; }
+  .links a { color: #15202b; }
+  p { margin: 5px 0; text-align: justify; }
+  ul { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+  .cols { display: flex; gap: 18px; }
+  .cols > div { flex: 1; }
+  .foot { margin-top: 10px; color: #5a6678; font-size: 8.6pt; border-top: 1px solid #ddd; padding-top: 5px; }
+  code { background: #f0f0f3; padding: 1px 4px; border-radius: 4px; font-size: 9pt; }
+</style>
+</head>
+<body>
+  <h1>The Penny Drops Lab — un blog hecho a mano</h1>
+  <div class="sub">Actividad 1 · Desarrollo de Aplicaciones en Red (UNIR) · <b>David Rojas</b> · 23 nov 2026</div>
+
+  <div class="links">
+    🔗 <b>Sitio desplegado:</b> <a href="https://thepennydropslab.github.io/the-penny-drops-lab/">https://thepennydropslab.github.io/the-penny-drops-lab/</a><br>
+    💻 <b>Repositorio público:</b> <a href="https://github.com/ThePennyDropsLab/the-penny-drops-lab">https://github.com/ThePennyDropsLab/the-penny-drops-lab</a>
+  </div>
+
+  <h2>Qué he construido y por qué</h2>
+  <p>En vez de un blog genérico de "tres entradas con una imagen", he levantado la web real de mi proyecto de divulgación, <b>The Penny Drops Lab</b> (un canal sobre cómo funcionan las cosas y cómo automatizarlas). Así la actividad tiene un interés propio y, de paso, me queda la landing del canal. Son <b>cuatro páginas navegables</b>: inicio con rejilla de entradas, tres artículos completos (automatización con IA, cómo funciona una base de datos, y cómo monté el canal con mi voz) y una página <i>Sobre</i>.</p>
+
+  <div class="cols">
+    <div>
+      <h2>Cómo lo he hecho</h2>
+      <p>Todo <b>a mano con HTML5, CSS3 y JavaScript</b>, sin frameworks ni generadores, para controlar cada detalle y poder explicarlo:</p>
+      <ul>
+        <li><b>CSS</b> con variables de diseño, <i>grid</i> responsive, <code>@keyframes</code> (la moneda que cae con sus ondas) y <code>prefers-reduced-motion</code>.</li>
+        <li><b>JavaScript</b>: modo claro/oscuro persistente (<code>localStorage</code>), menú móvil, aparición por scroll (<code>IntersectionObserver</code>) y barra de progreso de lectura.</li>
+        <li><b>Imágenes propias en SVG</b> (logo, portadas, avatar): nítidas y muy ligeras.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Más allá del mínimo</h2>
+      <ul>
+        <li>Diseño cuidado, coherente y <b>responsive</b> (móvil → escritorio).</li>
+        <li>Navegación con barra fija, enlaces entre entradas y estados activos.</li>
+        <li>Animaciones sutiles y accesibilidad básica (<code>alt</code>, <code>aria</code>, foco).</li>
+      </ul>
+      <h2>Uso de IA</h2>
+      <p>Usé <b>Claude (Claude Code)</b> como asistente para el andamiaje del HTML/CSS/JS y el diseño visual. El <b>contenido, las analogías, el criterio y la revisión</b> son míos; la IA aceleró el cómo, no el qué.</p>
+    </div>
+  </div>
+
+  <h2>Despliegue</h2>
+  <p>El sitio es estático (sin build), así que se publica tal cual. Lo subo a un repositorio público de GitHub y lo sirvo con <b>GitHub Pages</b> (rama <code>main</code>, raíz). Los dos enlaces de arriba permiten ver el código y la página en la nube.</p>
+
+  <div class="foot">Entrega: este documento (1 pág.) + los dos enlaces. Código: HTML5 + CSS3 + JavaScript, sin dependencias. © 2026 David Rojas.</div>
+</body>
+</html>

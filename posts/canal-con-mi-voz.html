@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cloné mi voz para divulgar — The Penny Drops Lab</title>
+  <meta name="description" content="Clonar tu voz sin perder tu voz: el flujo guion → audio → vídeo que uso para divulgar, y dónde la IA ayuda y dónde estorba.">
+  <link rel="icon" href="../assets/brand/coin.jpg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html" aria-label="Inicio">
+        <img src="../assets/brand/coin.jpg" width="30" height="30" alt="">
+      </a>
+      <a class="nav__title" href="../index.html">The Penny Drops Lab</a>
+      <nav class="nav__links" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html#entradas">Entradas</a>
+        <a href="../about.html">Sobre</a>
+        <span class="nav__socials">
+          <a class="nav__social" href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="nav__social" href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2L15.2 12L10 14.8Z" fill="currentColor" stroke="none"/></svg></a>
+        </span>
+      </nav>
+      <button class="theme-toggle" aria-label="Cambiar tema">☾</button>
+      <button class="nav__burger" aria-label="Abrir menú" aria-controls="menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <article class="wrap article">
+    <div class="article__head reveal">
+      <span class="tag" style="margin:0 auto">Detrás del canal</span>
+      <h1>Cloné mi voz para no grabar cien veces lo mismo</h1>
+      <div class="article__meta">
+        <span>Por David Rojas</span><span>·</span><span>23 nov 2026</span><span>·</span><span>5 min de lectura</span>
+      </div>
+    </div>
+
+    <figure class="article__cover reveal">
+      <img src="../assets/brand/cover-canal.jpg" alt="Onda de sonido fundiéndose con un botón de play">
+    </figure>
+
+    <div class="prose">
+      <p class="reveal">Quería empezar a divulgar en vídeo, pero había una parte que me frenaba: grabar el audio una y otra vez hasta que saliera bien. La pregunta incómoda era si podía usar IA para poner mi voz sin que dejara de sonar a mí. Resulta que sí, y de hecho este blog que estás leyendo es la primera pieza del proyecto.</p>
+
+      <p class="reveal">La forma más fácil de entenderlo es pensar en una tipografía hecha con tu propia letra. La creas una vez y, a partir de ahí, escribes lo que quieras y sale con tu trazo. Un clon de voz es lo mismo, pero con sonido: grabas unos minutos, el modelo aprende tu timbre y luego lee cualquier texto con tu voz. No sustituye nada; solo me ahorra repetir.</p>
+
+      <h2 class="reveal">El proceso, de principio a fin</h2>
+      <p class="reveal">El vídeo no sale de un botón mágico. Sale de una cadena en la que cada paso hace una sola cosa:</p>
+      <pre class="reveal"><code>guion  →  voz (clon)  →  audio  →  visuales  →  montaje  →  vídeo
+  │          │            │          │            │
+texto    modelo TTS    .wav       IA + código   ffmpeg</code></pre>
+
+      <p class="reveal">Todo empieza en el guion: un gancho al principio, una idea por bloque y una analogía por cada concepto. Si no se entiende leído, no se va a entender escuchado, así que ese texto es lo que más cuido.</p>
+
+      <p class="reveal">Luego viene el truco de ingeniería. En vez de reescribir todo mi montaje para meter la voz nueva, cambié solo la pieza que la generaba. El resto del proceso ni se enteró. Un script coge el guion, llama al modelo y deja los audios preparados:</p>
+      <pre class="reveal"><code>for i, linea in enumerate(guion):
+    audio = tts(linea, voz="mi-clon")
+    guardar(audio, f"vo/{i}.wav")</code></pre>
+      <p class="reveal">Poder cambiar una pieza sin tocar las demás es lo que en ingeniería se llama bajo acoplamiento. Suena a palabra rara hasta que te ahorra reescribir medio proyecto.</p>
+
+      <p class="reveal">Para los visuales mezclo dos cosas. Los planos más cinematográficos los genera una IA de vídeo, pero los diagramas, el código y los datos los dibujo con código: salen más limpios, más exactos y no gastan créditos. Cada herramienta donde es fuerte. Al final, audio y visuales se unen con <code>ffmpeg</code> y de ahí salen dos versiones: una larga en 16:9 para YouTube y cortes verticales para redes.</p>
+
+      <div class="callout reveal">
+        La IA pone la voz y algunos píxeles. El qué contar, en qué orden y con cuánta honestidad lo pongo yo. Esa parte es la que no se externaliza, y es justo la que da valor.
+      </div>
+
+      <p class="reveal">La idea es publicar algo nuevo cada semana en Instagram y YouTube; TikTok llegará un poco más tarde. Si has llegado hasta aquí, la moneda ya cayó: lo que ves en el canal es este mismo método en movimiento.</p>
+    </div>
+
+    <div class="article__nav reveal">
+      <a class="btn btn--ghost" href="como-funciona-una-base-de-datos.html">← Anterior: bases de datos</a>
+      <a class="btn btn--primary" href="../index.html">Volver al inicio →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="brand"><img src="../assets/brand/coin.jpg" width="26" height="26" alt=""></div>
+      <p>© 2026 David Rojas · The Penny Drops Lab</p>
+      <p><a href="../about.html">Sobre</a> · <a href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener">YouTube</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El informe que se hace solo — The Penny Drops Lab</title>
+  <meta name="description" content="El pipeline real con el que un informe semanal que hacía a mano pasó a generarse solo: cron, Python y dónde ayuda la IA.">
+  <link rel="icon" href="../assets/brand/coin.jpg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html" aria-label="Inicio">
+        <img src="../assets/brand/coin.jpg" width="30" height="30" alt="">
+      </a>
+      <a class="nav__title" href="../index.html">The Penny Drops Lab</a>
+      <nav class="nav__links" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html#entradas">Entradas</a>
+        <a href="../about.html">Sobre</a>
+        <span class="nav__socials">
+          <a class="nav__social" href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="nav__social" href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2L15.2 12L10 14.8Z" fill="currentColor" stroke="none"/></svg></a>
+        </span>
+      </nav>
+      <button class="theme-toggle" aria-label="Cambiar tema">☾</button>
+      <button class="nav__burger" aria-label="Abrir menú" aria-controls="menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <article class="wrap article">
+    <div class="article__head reveal">
+      <span class="tag" style="margin:0 auto">IA aplicada</span>
+      <h1>El informe que me robaba seis horas cada lunes ahora se hace solo</h1>
+      <div class="article__meta">
+        <span>Por David Rojas</span><span>·</span><span>23 nov 2026</span><span>·</span><span>6 min de lectura</span>
+      </div>
+    </div>
+
+    <figure class="article__cover reveal">
+      <img src="../assets/brand/cover-automatizacion.jpg" alt="Engranajes enlazados formando un ciclo de automatización">
+    </figure>
+
+    <div class="prose">
+      <p class="reveal">Durante meses, todos los lunes empezaban igual: abrir el portal, descargar los datos, pegarlos en una plantilla, calcular medias, escribir los comentarios y exportar un PDF. Entre unas cosas y otras, la mañana entera. Un día me paré a mirarlo y caí en que no estaba decidiendo nada: solo repetía los mismos pasos con datos distintos. Y eso una máquina lo hace mejor que yo.</p>
+
+      <p class="reveal">La idea de fondo es sencilla. Un informe funciona como una receta: unos ingredientes (los datos de la semana), unos pasos (los cálculos) y un plato final (el documento). La receta no cambia nunca; lo único que cambia son los ingredientes. Así que basta con escribirla una vez en código y dejar que se cocine sola cada semana.</p>
+
+      <h2 class="reveal">Cómo está montado</h2>
+      <p class="reveal">Lo partí en cuatro trozos. Cada uno hace una cosa y le pasa el resultado al siguiente:</p>
+      <figure class="diagram reveal">
+        <svg viewBox="0 0 720 200" role="img" aria-label="Un cron dispara cada semana un script que encadena datos crudos, cálculos y la generación del PDF">
+          <defs>
+            <marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+              <path d="M0 0 L9 4.5 L0 9 Z" class="d-arrowhead"/>
+            </marker>
+          </defs>
+          <rect x="12" y="14" width="208" height="34" rx="17" class="d-box--accent"/>
+          <text x="116" y="36" text-anchor="middle" class="d-card">cron · cada lunes 07:00</text>
+          <path d="M116 48 L116 100" class="d-dash" marker-end="url(#ah)"/>
+
+          <rect x="12" y="104" width="150" height="58" rx="8" class="d-box"/>
+          <text x="87" y="128" text-anchor="middle" class="d-label">Datos crudos</text>
+          <text x="87" y="147" text-anchor="middle" class="d-sub">.xls · API</text>
+
+          <rect x="194" y="104" width="150" height="58" rx="8" class="d-box--accent"/>
+          <text x="269" y="128" text-anchor="middle" class="d-label">Script</text>
+          <text x="269" y="147" text-anchor="middle" class="d-sub">Python</text>
+
+          <rect x="376" y="104" width="150" height="58" rx="8" class="d-box"/>
+          <text x="451" y="128" text-anchor="middle" class="d-label">Cálculos</text>
+          <text x="451" y="147" text-anchor="middle" class="d-sub">pandas</text>
+
+          <rect x="558" y="104" width="150" height="58" rx="8" class="d-box"/>
+          <text x="633" y="128" text-anchor="middle" class="d-label">PDF</text>
+          <text x="633" y="147" text-anchor="middle" class="d-sub">informe final</text>
+
+          <path d="M162 133 L194 133" class="d-flow" marker-end="url(#ah)"/>
+          <path d="M344 133 L376 133" class="d-flow" marker-end="url(#ah)"/>
+          <path d="M526 133 L558 133" class="d-flow" marker-end="url(#ah)"/>
+        </svg>
+        <figcaption>El informe como una cadena de pasos: un <code>cron</code> lo dispara cada semana y cada pieza alimenta a la siguiente.</figcaption>
+      </figure>
+
+      <p class="reveal">Lo primero es traer el archivo y leerlo tal cual, sin abrir Excel. Si nadie toca el dato a mano, el dato no se rompe. Después viene la parte que de verdad importa, que son unas pocas líneas: convertir columnas, rellenar huecos y sacar los números que antes calculaba yo.</p>
+      <pre class="reveal"><code>import pandas as pd
+
+df = pd.read_excel("origen.xls")
+df = df.dropna(subset=["valor"])
+resumen = (df.groupby("grupo")["valor"]
+             .agg(["mean", "max", "count"])
+             .round(2))
+resumen.to_json("resumen.json")</code></pre>
+
+      <p class="reveal">Con el resumen listo, una plantilla fija lo recoge y rellena los huecos. El diseño del informe no cambia; solo entran los números nuevos. Sale idéntico al de siempre, en segundos.</p>
+
+      <h2 class="reveal">Dónde entra la IA, y dónde no</h2>
+      <p class="reveal">Esta es la parte donde más gente se confunde. La IA no hace los cálculos: eso lo hace el código, que es exacto y no se equivoca con las cuentas. Lo que le pido a la IA es lo que al código se le da fatal: leer el resumen y escribir los comentarios en lenguaje normal, del tipo «esta semana el grupo A sube un 4% respecto a la anterior». Le paso los números, me devuelve el párrafo, lo reviso y ya está.</p>
+      <div class="callout reveal">
+        En resumen: el código para lo que tiene que salir exacto siempre, y la IA para lo que tiene que sonar a persona. Cambiarlo de orden es pedir problemas.
+      </div>
+
+      <h2 class="reveal">El último paso es el que lo cambia todo</h2>
+      <p class="reveal">Con los scripts encadenados ya tenía el informe a un clic, pero seguía teniendo que lanzarlo yo. El detalle que lo cierra es programarlo: un <code>cron</code> ejecuta todo cada lunes a las siete de la mañana. Cuando me siento, el PDF ya está en la carpeta.</p>
+      <pre class="reveal"><code># cada lunes a las 07:00
+0 7 * * 1  /usr/bin/python3 /ruta/informe.py</code></pre>
+
+      <h2 class="reveal">Esto sirve para casi todo</h2>
+      <p class="reveal">Lo potente no es este informe concreto, sino el patrón. Casi cualquier tarea que repites cabe en un script: renombrar cientos de archivos, cruzar dos hojas de Excel, descargar un dato cada mañana y avisarte por correo, generar facturas, limpiar una carpeta. No hace falta montar nada grande. Basta un lenguaje como <strong>Python, SQL o Bash</strong> y decidir que no vas a volver a hacerlo a mano.</p>
+      <p class="reveal">La regla con la que lo decido es sencilla: si puedo explicarte la tarea paso a paso sin saltarme nada, entonces se puede escribir en código. Y si se puede escribir, se puede programar para que se ejecute sola. La primera vez cuesta una tarde; las siguientes, cero.</p>
+
+      <p class="reveal">Seis horas a la semana son casi un día de trabajo al mes. Y lo interesante no es la tecnología, que es bastante simple, sino lo que haces con el tiempo que recuperas. Lo único que no automaticé, a propósito, es la decisión de qué mirar: eso sigue siendo cosa mía.</p>
+    </div>
+
+    <div class="article__nav reveal">
+      <a class="btn btn--ghost" href="../index.html">← Todas las entradas</a>
+      <a class="btn btn--primary" href="como-funciona-una-base-de-datos.html">Siguiente: bases de datos →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="brand"><img src="../assets/brand/coin.jpg" width="26" height="26" alt=""></div>
+      <p>© 2026 David Rojas · The Penny Drops Lab</p>
+      <p><a href="../about.html">Sobre</a> · <a href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener">YouTube</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

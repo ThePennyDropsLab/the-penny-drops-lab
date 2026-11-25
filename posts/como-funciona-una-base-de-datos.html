@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Por qué una base de datos no es un Excel gigante — The Penny Drops Lab</title>
+  <meta name="description" content="11.646 gasolineras, 24 columnas y el 84% vacío. La analogía del armario de cajones que hace que las bases de datos tengan sentido.">
+  <link rel="icon" href="../assets/brand/coin.jpg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html" aria-label="Inicio">
+        <img src="../assets/brand/coin.jpg" width="30" height="30" alt="">
+      </a>
+      <a class="nav__title" href="../index.html">The Penny Drops Lab</a>
+      <nav class="nav__links" id="menu">
+        <a href="../index.html">Inicio</a>
+        <a href="../index.html#entradas">Entradas</a>
+        <a href="../about.html">Sobre</a>
+        <span class="nav__socials">
+          <a class="nav__social" href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="nav__social" href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2L15.2 12L10 14.8Z" fill="currentColor" stroke="none"/></svg></a>
+        </span>
+      </nav>
+      <button class="theme-toggle" aria-label="Cambiar tema">☾</button>
+      <button class="nav__burger" aria-label="Abrir menú" aria-controls="menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <article class="wrap article">
+    <div class="article__head reveal">
+      <span class="tag" style="margin:0 auto">Datos</span>
+      <h1>11.646 gasolineras y por qué una base de datos no es un Excel gigante</h1>
+      <div class="article__meta">
+        <span>Por David Rojas</span><span>·</span><span>23 nov 2026</span><span>·</span><span>7 min de lectura</span>
+      </div>
+    </div>
+
+    <figure class="article__cover reveal">
+      <img src="../assets/brand/cover-datos.jpg" alt="Un armario de cajones junto a una base de datos cilíndrica">
+    </figure>
+
+    <div class="prose">
+      <p class="reveal">Hace poco me bajé los precios de carburante de las <strong>11.646 gasolineras</strong> de España que publica el Ministerio. Un archivo enorme, con 24 columnas de precios, una por cada tipo de combustible. Al abrirlo me encontré con algo raro: el <strong>84% de las celdas estaban vacías</strong>. Y tiene sentido, porque una gasolinera que solo vende gasóleo deja en blanco las otras veinte columnas. Pero ese archivo lleno de huecos es justo lo que una base de datos bien hecha nunca haría.</p>
+
+      <h2 class="reveal">Imagina un armario de 24 cajones</h2>
+      <p class="reveal">Piensa en un armario con 24 cajones para cada gasolinera, uno por combustible. La mayoría usan tres o cuatro; el resto de cajones están vacíos, pero siguen ocupando sitio. Ahora multiplícalo por 11.646 armarios y tienes un almacén entero lleno de aire.</p>
+      <p class="reveal">Una base de datos no monta esos armarios gigantes. En su lugar guarda una ficha por cada cajón que de verdad tiene algo dentro. Si una gasolinera vende tres combustibles, genera tres fichas, ni una más. Cero huecos.</p>
+
+      <h2 class="reveal">De una hoja gigante a varias tablas</h2>
+      <p class="reveal">Esa es, en el fondo, la diferencia entre una hoja de cálculo y una base de datos. En vez de una tabla anchísima y medio vacía, separas la información en tablas más pequeñas conectadas entre sí:</p>
+      <ul class="reveal">
+        <li><strong>Estaciones:</strong> una fila por gasolinera, con su nombre, su dirección y sus coordenadas.</li>
+        <li><strong>Precios:</strong> una fila por cada combustible que realmente vende, apuntando a su estación.</li>
+      </ul>
+      <p class="reveal">Las dos tablas se enlazan con un identificador: cada precio guarda el <code>id</code> de la estación a la que pertenece. Esto es un <strong>modelo entidad-relación</strong>, la forma estándar de dibujar una base de datos antes de construirla. Cada tabla es una <em>entidad</em>, cada columna un <em>atributo</em> y la línea que las conecta es la <em>relación</em>. La clave primaria (<code>PK</code>) identifica cada fila sin repetirse nunca; la clave foránea (<code>FK</code>) es la que apunta de una tabla a la otra.</p>
+
+      <figure class="diagram reveal">
+        <svg viewBox="0 0 720 230" role="img" aria-label="Modelo entidad-relación: la entidad Estaciones se relaciona uno a muchos con la entidad Precios, enlazadas por la clave foránea estacion_id">
+          <rect x="24" y="40" width="212" height="156" rx="8" class="d-box"/>
+          <rect x="24" y="40" width="212" height="36" rx="8" class="d-head"/>
+          <text x="130" y="63" text-anchor="middle" class="d-title">ESTACIONES</text>
+          <line x1="24" y1="106" x2="236" y2="106" class="d-div"/>
+          <line x1="24" y1="136" x2="236" y2="136" class="d-div"/>
+          <line x1="24" y1="166" x2="236" y2="166" class="d-div"/>
+          <text x="40" y="95" class="d-key">PK</text><text x="70" y="95" class="d-row">id</text>
+          <text x="40" y="125" class="d-row d-rowdim">nombre</text>
+          <text x="40" y="155" class="d-row d-rowdim">direccion</text>
+          <text x="40" y="185" class="d-row d-rowdim">lat, lon</text>
+
+          <rect x="484" y="40" width="212" height="156" rx="8" class="d-box"/>
+          <rect x="484" y="40" width="212" height="36" rx="8" class="d-head"/>
+          <text x="590" y="63" text-anchor="middle" class="d-title">PRECIOS</text>
+          <line x1="484" y1="106" x2="696" y2="106" class="d-div"/>
+          <line x1="484" y1="136" x2="696" y2="136" class="d-div"/>
+          <line x1="484" y1="166" x2="696" y2="166" class="d-div"/>
+          <text x="500" y="95" class="d-key">PK</text><text x="530" y="95" class="d-row">id</text>
+          <text x="500" y="125" class="d-key">FK</text><text x="530" y="125" class="d-row">estacion_id</text>
+          <text x="500" y="155" class="d-row d-rowdim">combustible</text>
+          <text x="500" y="185" class="d-row d-rowdim">precio</text>
+
+          <path d="M236 121 L468 121" class="d-rel"/>
+          <path d="M468 121 L484 109" class="d-rel"/>
+          <path d="M468 121 L484 121" class="d-rel"/>
+          <path d="M468 121 L484 133" class="d-rel"/>
+          <text x="250" y="113" class="d-card">1</text>
+          <text x="450" y="113" class="d-card">N</text>
+        </svg>
+        <figcaption>Una estación (<strong>1</strong>) tiene muchos precios (<strong>N</strong>). <code>precios.estacion_id</code> apunta a <code>estaciones.id</code>.</figcaption>
+      </figure>
+
+      <p class="reveal">Leído así, todo el conjunto encaja: entidades que guardan cosas, claves que las identifican y relaciones que las conectan sin duplicar ni un dato. Ese dibujo es, literalmente, el plano de la base de datos; a partir de ahí, construirla es casi copiar.</p>
+
+      <h2 class="reveal">Y aquí llega lo bueno: preguntar</h2>
+      <p class="reveal">Con los datos ordenados así, buscar la gasolinera más barata que tengo cerca deja de ser rebuscar a ojo y se convierte en una pregunta de cuatro líneas:</p>
+      <pre class="reveal"><code>SELECT e.nombre, p.precio
+FROM precios p
+JOIN estaciones e ON e.id = p.estacion_id
+WHERE p.combustible = 'Gasóleo A'
+ORDER BY p.precio ASC
+LIMIT 1;</code></pre>
+      <p class="reveal">La respuesta llega en milisegundos sobre miles de estaciones, porque la base de datos nunca tuvo que mirar los cajones vacíos: para ella no existían.</p>
+
+      <div class="callout reveal">
+        Una base de datos no es «un Excel más grande». Es una forma de guardar la realidad sin inventarse huecos, para después poder preguntarle cosas y que te conteste rápido.
+      </div>
+
+      <h2 class="reveal">Un detalle que me gustó: la Tierra es redonda</h2>
+      <p class="reveal">Para ordenar por «la más cercana» hay una trampa. No puedes restar las coordenadas como si el mapa fuera plano, porque no lo es. La distancia real entre dos puntos sobre una esfera se calcula con la fórmula de Haversine. Es uno de esos detalles que separan un resultado que parece correcto de uno que lo es de verdad.</p>
+
+      <p class="reveal">La moraleja me la llevo yo: antes de buscar la respuesta más rápida, hay que ordenar bien la pregunta. En este caso, casi todo el trabajo estaba en no guardar aire.</p>
+    </div>
+
+    <div class="article__nav reveal">
+      <a class="btn btn--ghost" href="automatizar-informe-con-ia.html">← Anterior: automatización</a>
+      <a class="btn btn--primary" href="canal-con-mi-voz.html">Siguiente: el canal →</a>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="brand"><img src="../assets/brand/coin.jpg" width="26" height="26" alt=""></div>
+      <p>© 2026 David Rojas · The Penny Drops Lab</p>
+      <p><a href="../about.html">Sobre</a> · <a href="https://instagram.com/thepennydropslab" target="_blank" rel="noopener">Instagram</a> · <a href="https://youtube.com/@thepennydropslab" target="_blank" rel="noopener">YouTube</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
